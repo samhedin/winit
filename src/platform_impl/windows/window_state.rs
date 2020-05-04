@@ -214,6 +214,9 @@ impl WindowFlags {
         if self.contains(WindowFlags::TRANSPARENT) && self.contains(WindowFlags::DECORATIONS) {
             style_ex |= WS_EX_LAYERED;
         }
+        if self.contains(WindowFlags::TRANSPARENT) {
+            style_ex |= WS_EX_TRANSPARENT;
+        }
         if self.contains(WindowFlags::CHILD) {
             style |= WS_CHILD; // This is incompatible with WS_POPUP if that gets added eventually.
         }

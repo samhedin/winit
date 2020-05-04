@@ -214,7 +214,8 @@ impl WindowFlags {
         if self.contains(WindowFlags::TRANSPARENT) && self.contains(WindowFlags::DECORATIONS) {
             style_ex |= WS_EX_LAYERED;
         }
-        if self.contains(WindowFlags::TRANSPARENT) {
+        if self.contains(WindowFlags::TRANSPARENT) { //TODO: This is what I tried to add without it doing any difference.
+            style_ex |= WS_EX_COMPOSITED;
             style_ex |= WS_EX_TRANSPARENT;
         }
         if self.contains(WindowFlags::CHILD) {

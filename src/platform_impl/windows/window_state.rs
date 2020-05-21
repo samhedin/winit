@@ -214,10 +214,6 @@ impl WindowFlags {
         if self.contains(WindowFlags::TRANSPARENT) && self.contains(WindowFlags::DECORATIONS) {
             style_ex |= WS_EX_LAYERED;
         }
-        if self.contains(WindowFlags::TRANSPARENT) { //TODO: This is what I tried to add without it doing any difference.
-            style_ex |= WS_EX_COMPOSITED;
-            style_ex |= WS_EX_TRANSPARENT;
-        }
         if self.contains(WindowFlags::CHILD) {
             style |= WS_CHILD; // This is incompatible with WS_POPUP if that gets added eventually.
         }
@@ -227,6 +223,11 @@ impl WindowFlags {
         if self.contains(WindowFlags::MAXIMIZED) {
             style |= WS_MAXIMIZE;
         }
+
+        style_ex |= WS_EX_COMPOSITED;
+        style_ex |= WS_EX_TRANSPARENT;
+        style_ex |= WS_EX_LAYERED;
+        style_ex |= WS_EX_TOPMOST;
 
         style |= WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_SYSMENU;
         style_ex |= WS_EX_ACCEPTFILES;
